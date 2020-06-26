@@ -1,16 +1,26 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <b-container class='CardContainer'>
+      <b-row align-v="center">
+        <LinkCard />
+      </b-row>
+    </b-container>
     
   </div>
 </template>
 
 <script>
+import LinkCard from './LinkCard'
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
+  components:{
+    LinkCard,
+  },
+  data(){
+    return{
+      name: "Mongo",
+    };
   }
+
 }
 </script>
 
