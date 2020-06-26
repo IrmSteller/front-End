@@ -2,7 +2,7 @@
   <div class="hello">
     <b-container class='CardContainer'>
       <b-row align-v="center">
-        <LinkCard />
+        <LinkCard v-bind="props"/>
       </b-row>
     </b-container>
     
@@ -17,7 +17,8 @@ export default {
   },
   data(){
     return{
-      name: "Mongo",
+      props:{name: "MongoDB", footer: "DB Example"},
+      
     };
   }
 
