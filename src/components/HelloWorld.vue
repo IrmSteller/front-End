@@ -5,7 +5,19 @@
         <LinkCard v-bind="props"/>
       </b-row>
     </b-container>
-    
+    <div class="flex-container">
+      <button @click="$router.replace('/mongo')">Button1</button>
+      <button>Button2</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+      <button>Button3</button>
+    </div>  
   </div>
 </template>
 
@@ -21,24 +33,25 @@ export default {
       
     };
   }
+ 
 
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.flex-container{
+  flex-wrap: wrap;
+  width: 200;
+  display: flex;
+  background-color: aquamarine;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.flex-container > button{
+  margin: 10px;
+  background-color: rgb(79, 175, 34);
+  width: 100;
+  height: 100;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
