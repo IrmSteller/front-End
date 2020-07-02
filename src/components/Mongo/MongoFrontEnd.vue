@@ -1,14 +1,12 @@
 <template>
   <div>    
+    
     <button @click="this.fetchBooks">Refresh</button>
     <div id="container">
-        <b-card v-for="book in books" :key="book._id"
-          :title=book.name
-          tag="article"
-          style="max-width:20rem"
-          class="mb-2"
-          :footer=book.price
+        <BookCard  v-for="book in books" :key="book._id" :name="book.name"
+         
         />
+        <b-card v-for="book in books" :key="book._id" :title="book.name"/>
     </div>
     <p></p>
   <form method="post" @submit.prevent="addBook">
@@ -27,16 +25,21 @@
 
 <script>
 import MongoService from '../../services/MongoService';
+import BookCard from '../BookCard';
 export default {
+  
+  
   comments:{
-    MongoService
+    MongoService,
+    BookCard
   },
   data(){
     return{
       name: '',
       price: 0,
       quantity: 0,     
-      books: [],
+      
+      books:[]
     }
   },
   created(){
@@ -53,6 +56,9 @@ export default {
       MongoService.addBook(this.name, this.price, this.quantity)
       .then(res => {console.log(res)})
       .catch(console.log("fehler"));
+    },
+    deleteBook(){
+      MongoService.deleteBook()
     }
   }
 }
@@ -63,11 +69,10 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      border: 2px;
+      border-color: black;
     }
-    #Card{
-      margin: 10;
-      border: 1px;
-    }
+   
 
 
 </style>

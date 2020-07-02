@@ -20,5 +20,14 @@ export default {
         } catch (error) {
             console.log(error);
         }
+    },
+    deleteBook(id){
+        try {
+            Axios.delete(RESOURCE_NAME + id);
+
+        } catch (error) {
+            console.log(error);
+        }
     }
+
 };

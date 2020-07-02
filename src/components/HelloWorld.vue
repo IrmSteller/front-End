@@ -7,16 +7,7 @@
     </b-container>
     <div class="flex-container">
       <button @click="$router.replace('/mongo')">Button1</button>
-      <button>Button2</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
-      <button>Button3</button>
+     
     </div>  
   </div>
 </template>
