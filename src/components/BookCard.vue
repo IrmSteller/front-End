@@ -1,25 +1,28 @@
 <template>
   <div>
-      <label>{{name}}</label>
+      <b-col>
        <b-card
-          :title="name"
+          :title="book.name"
+          img-src="../assets/kulturen.png"
           tag="article"
           style="max-width:20rem"
           class="mb-2"
-          footer="footer"
+          :footer="book.price"
         />
-        <b-button @click="deleteBook($event)" variant="primary">Delete</b-button>
+        <b-card-text> dskgfsdhgfiserhgirsegferg</b-card-text>
+        <b-button @click="deleteBook()" variant="danger">Delete</b-button>
+        </b-col>
     </div>
 </template>
 
 <script>
 export default {
-    props: ["name"],
+    props: ["book"],
     
     methods:{
-        deleteBook(event){
-            event.preventDefault();
-            this.$emit('deleteBook', {id:this.books.id})
+        deleteBook(){
+            // event.preventDefault();
+            this.$emit('deleteBook', this.book._id)
         }
     }
     

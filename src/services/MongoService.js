@@ -1,6 +1,7 @@
 import Axios from 'axios';
 
 const RESOURCE_NAME = (`http://localhost:3000/book/`);
+//const RESOURCE_NAME = (`http://192.168.178.47:3000/book/`);
 export default {
     getAll(){
         try {
@@ -23,7 +24,8 @@ export default {
     },
     deleteBook(id){
         try {
-            Axios.delete(RESOURCE_NAME + id);
+            console.log(id);
+            Axios.delete(`${RESOURCE_NAME}${id}`);
 
         } catch (error) {
             console.log(error);

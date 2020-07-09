@@ -2,11 +2,16 @@
   <div>    
     
     <button @click="this.fetchBooks">Refresh</button>
+    <input type="text" v-model="search">
     <div id="container">
-        <BookCard  v-for="book in books" :key="book._id" :name="book.name"
-         
-        />
-        <b-card v-for="book in books" :key="book._id" :title="book.name"/>
+      <b-container>
+        <b-row align-v="center">
+          <bookCard v-for="book in filterdItems" :key="book._id" :book="book"
+          @deleteBook="deleteBook"
+          />
+        <!-- <b-card v-for="book in books" :key="book._id" :title="book.name"/> -->
+        </b-row>
+      </b-container>
     </div>
     <p></p>
   <form method="post" @submit.prevent="addBook">
@@ -29,36 +34,48 @@ import BookCard from '../BookCard';
 export default {
   
   
-  comments:{
-    MongoService,
+  components:{
     BookCard
   },
   data(){
     return{
       name: '',
+      search: '',
       price: 0,
       quantity: 0,     
       
-      books:[]
+      books:[{name: "hans", _id:10}, {name: "werner", _id:11}]
     }
   },
   created(){
     this.fetchBooks()
   },
+  computed:{
+    filterdItems(){
+      return this.books.filter(book =>{
+        return book.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1
+      });
+    }
+  },
   methods:{
-    fetchBooks(){
-       MongoService.getAll()
+
+    async fetchBooks(){
+      await MongoService.getAll()
          .then(res => {this.books = res.data})
          .catch(err => {console.log(err)})
     },
-    addBook(){
+    async addBook(){
    
-      MongoService.addBook(this.name, this.price, this.quantity)
-      .then(res => {console.log(res)})
+      await MongoService.addBook(this.name, this.price, this.quantity)
+      .then(res => {console.log(res), this.fetchBooks();})
       .catch(console.log("fehler"));
+      
     },
-    deleteBook(){
-      MongoService.deleteBook()
+    async deleteBook(bookId){
+      await MongoService.deleteBook(bookId)
+      .then(this.fetchBooks())
+      .catch(console.log("fehler"));
+      
     }
   }
 }
@@ -66,6 +83,8 @@ export default {
 
 <style>
     #container{
+      background-color: lightblue;
+      margin: 20px;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
